@@ -44,6 +44,16 @@ public class AppmetricaSdkPlugin implements MethodCallHandler {
         this.mApplication = registrar.activity().getApplication();
     }
 
+    public static void activate(Application application, String key){
+        YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(key)
+                .withLogs()
+                .build();
+        // Initializing the AppMetrica SDK.
+        YandexMetrica.activate(application, config);
+        // Automatic tracking of user activity.
+        YandexMetrica.enableActivityAutoTracking(application);
+    }
+
     @Override
     public void onMethodCall(MethodCall call, Result result) {
         switch (call.method) {
