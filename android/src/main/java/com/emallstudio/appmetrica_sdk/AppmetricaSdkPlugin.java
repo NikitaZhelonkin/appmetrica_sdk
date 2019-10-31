@@ -100,33 +100,33 @@ public class AppmetricaSdkPlugin implements MethodCallHandler {
     }
 
     private void handleActivate(MethodCall call, Result result) {
-        try {
-            @SuppressWarnings("unchecked")
-            Map<String, Object> arguments = (Map<String, Object>) call.arguments;
-            // Get activation parameters.
-            final String apiKey = (String) arguments.get("apiKey");
-            final int sessionTimeout = (int) arguments.get("sessionTimeout");
-            final boolean locationTracking = (boolean) arguments.get("locationTracking");
-            final boolean statisticsSending = (boolean) arguments.get("statisticsSending");
-            final boolean crashReporting = (boolean) arguments.get("crashReporting");
-            final int maxReportsInDatabaseCount = (int) arguments.get("maxReportsInDatabaseCount");
-            // Creating an extended library configuration.
-            YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(apiKey)
-                    .withLogs()
-                    .withSessionTimeout(sessionTimeout)
-                    .withLocationTracking(locationTracking)
-                    .withStatisticsSending(statisticsSending)
-                    .withCrashReporting(crashReporting)
-                    .withMaxReportsInDatabaseCount(maxReportsInDatabaseCount)
-                    .build();
-            // Initializing the AppMetrica SDK.
-            YandexMetrica.activate(mContext, config);
-            // Automatic tracking of user activity.
-            YandexMetrica.enableActivityAutoTracking(mApplication);
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-            result.error("Error performing activation", e.getMessage(), null);
-        }
+        // try {
+        //     @SuppressWarnings("unchecked")
+        //     Map<String, Object> arguments = (Map<String, Object>) call.arguments;
+        //     // Get activation parameters.
+        //     final String apiKey = (String) arguments.get("apiKey");
+        //     final int sessionTimeout = (int) arguments.get("sessionTimeout");
+        //     final boolean locationTracking = (boolean) arguments.get("locationTracking");
+        //     final boolean statisticsSending = (boolean) arguments.get("statisticsSending");
+        //     final boolean crashReporting = (boolean) arguments.get("crashReporting");
+        //     final int maxReportsInDatabaseCount = (int) arguments.get("maxReportsInDatabaseCount");
+        //     // Creating an extended library configuration.
+        //     YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(apiKey)
+        //             .withLogs()
+        //             .withSessionTimeout(sessionTimeout)
+        //             .withLocationTracking(locationTracking)
+        //             .withStatisticsSending(statisticsSending)
+        //             .withCrashReporting(crashReporting)
+        //             .withMaxReportsInDatabaseCount(maxReportsInDatabaseCount)
+        //             .build();
+        //     // Initializing the AppMetrica SDK.
+        //     YandexMetrica.activate(mContext, config);
+        //     // Automatic tracking of user activity.
+        //     YandexMetrica.enableActivityAutoTracking(mApplication);
+        // } catch (Exception e) {
+        //     Log.e(TAG, e.getMessage(), e);
+        //     result.error("Error performing activation", e.getMessage(), null);
+        // }
         result.success(null);
     }
 

@@ -53,14 +53,14 @@ class AppmetricaSdk {
     if (crashReporting == null) {
       throw ArgumentError.notNull('maxReportsInDatabaseCount');
     }
-    // await _channel.invokeMethod<void>('activate', <String, dynamic>{
-    //   'apiKey': apiKey,
-    //   'sessionTimeout': sessionTimeout,
-    //   'locationTracking': locationTracking,
-    //   'statisticsSending': statisticsSending,
-    //   'crashReporting': crashReporting,
-    //   'maxReportsInDatabaseCount': maxReportsInDatabaseCount,
-    // });
+    await _channel.invokeMethod<void>('activate', <String, dynamic>{
+      'apiKey': apiKey,
+      'sessionTimeout': sessionTimeout,
+      'locationTracking': locationTracking,
+      'statisticsSending': statisticsSending,
+      'crashReporting': crashReporting,
+      'maxReportsInDatabaseCount': maxReportsInDatabaseCount,
+    });
 
     /// Set the API Key after activation.
     _apiKey = apiKey;
